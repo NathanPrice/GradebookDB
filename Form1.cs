@@ -37,11 +37,29 @@ namespace GradebookDB
         // String to connect to your Database
         SqlConnection con = new SqlConnection("Data Source=PC16\\SQLEXPRESS;Initial Catalog=Gradebook;Integrated Security=True");
 
+        // Variable to send SQL Commands
+        SqlCommand cmd;
+
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             try
             {
                 Grades calc = new Grades();
+                int average = calc.getAverage(Convert.ToInt32(txtGrade1.Text), Convert.ToInt32(txtGrade2.Text), Convert.ToInt32(txtGrade3.Text));
+                char letterGrade = calc.getLetterGrade(average);
+
+                con.Open();
+                cmd = new SqlCommand(@"INSERT INTO Info (First_Name, Last_Name, Grade_1, Grade_2, Grade_3, Average, Letter_Grade) VALUES (@First_Name, @Last_Name, @Grade_1, @Grade_2, @Grade_3, @Average, @Letter_Grade)", con);
+                cmd.Parameters.AddWithValue("@First_Name", txtFname.Text);
+                cmd.Parameters.AddWithValue("@Last_Name", txtLname.Text);
+                cmd.Parameters.AddWithValue("@Grade_1", Convert.ToInt32(txtGrade1.Text));
+                cmd.Parameters.AddWithValue("@Grade_2", Convert.ToInt32(txtGrade2.Text));
+                cmd.Parameters.AddWithValue("@Grade_3", Convert.ToInt32(txtGrade3.Text));
+                cmd.Parameters.AddWithValue("@Average", average);
+                cmd.Parameters.AddWithValue("@Letter_Grade", letterGrade);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
             }
             catch (Exception ex)
             {
