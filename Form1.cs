@@ -39,7 +39,14 @@ namespace GradebookDB
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            Grades calc = new Grades();
+            try
+            {
+                Grades calc = new Grades();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex));
+            }
         }
     }
 
