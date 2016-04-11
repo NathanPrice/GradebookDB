@@ -34,9 +34,13 @@ namespace GradebookDB
 
         }
 
+        // String to connect to your Database
+        SqlConnection con = new SqlConnection("Data Source=PC16\\SQLEXPRESS;Initial Catalog=Gradebook;Integrated Security=True");
+
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
+            Grades calc = new Grades();
         }
     }
+
 }
