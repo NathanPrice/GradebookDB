@@ -72,6 +72,7 @@
             // 
             this.infoBindingSource.DataMember = "Info";
             this.infoBindingSource.DataSource = this.gradebookDataSet;
+            this.infoBindingSource.CurrentChanged += new System.EventHandler(this.infoBindingSource_CurrentChanged);
             // 
             // infoTableAdapter
             // 

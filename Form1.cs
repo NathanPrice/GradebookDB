@@ -32,6 +32,12 @@ namespace GradebookDB
             // TODO: This line of code loads data into the 'gradebookDataSet.Info' table. You can move, or remove it, as needed.
             this.infoTableAdapter.Fill(this.gradebookDataSet.Info);
 
+            txtFname.Text = "";
+            txtLname.Text = "";
+            txtGrade1.Text = "";
+            txtGrade2.Text = "";
+            txtGrade3.Text = "";
+
         }
 
         // String to connect to your Database
@@ -39,6 +45,10 @@ namespace GradebookDB
 
         // Variable to send SQL Commands
         SqlCommand cmd;
+
+        // Represents a set of data commands and a database connection that are used to fill the DataSet and update a SQL Server database
+        SqlDataAdapter sda;
+        DataTable dt;
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -58,6 +68,12 @@ namespace GradebookDB
                 cmd.Parameters.AddWithValue("@Average", average);
                 cmd.Parameters.AddWithValue("@Letter_Grade", letterGrade);
                 cmd.ExecuteNonQuery();
+
+                // Refreshes DataGridView with newly entered Info
+                sda = new SqlDataAdapter("SELECT * FROM Info", con);
+                dt = new DataTable();
+                sda.Fill(dt);
+                infoDataGridView.DataSource = dt;
                 con.Close();
 
             }
@@ -65,6 +81,11 @@ namespace GradebookDB
             {
                 MessageBox.Show(Convert.ToString(ex));
             }
+        }
+
+        private void infoBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 
