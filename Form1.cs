@@ -31,13 +31,7 @@ namespace GradebookDB
         {
             // TODO: This line of code loads data into the 'gradebookDataSet.Info' table. You can move, or remove it, as needed.
             this.infoTableAdapter.Fill(this.gradebookDataSet.Info);
-
-            txtFname.Text = "";
-            txtLname.Text = "";
-            txtGrade1.Text = "";
-            txtGrade2.Text = "";
-            txtGrade3.Text = "";
-
+            clearTextBoxes();
         }
 
         // String to connect to your Database
@@ -76,11 +70,22 @@ namespace GradebookDB
                 infoDataGridView.DataSource = dt;
                 con.Close();
 
+                clearTextBoxes();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(Convert.ToString(ex));
             }
+        }
+
+        private void clearTextBoxes()
+        {
+            txtFname.Text = "";
+            txtLname.Text = "";
+            txtGrade1.Text = "";
+            txtGrade2.Text = "";
+            txtGrade3.Text = "";
         }
 
         private void infoBindingSource_CurrentChanged(object sender, EventArgs e)
