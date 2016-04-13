@@ -53,6 +53,8 @@
             this.txtGrade1 = new System.Windows.Forms.TextBox();
             this.txtGrade2 = new System.Windows.Forms.TextBox();
             this.txtGrade3 = new System.Windows.Forms.TextBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             first_NameLabel = new System.Windows.Forms.Label();
             last_NameLabel = new System.Windows.Forms.Label();
             grade_1Label = new System.Windows.Forms.Label();
@@ -62,6 +64,51 @@
             ((System.ComponentModel.ISupportInitialize)(this.infoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoDataGridView)).BeginInit();
             this.SuspendLayout();
+            // 
+            // first_NameLabel
+            // 
+            first_NameLabel.AutoSize = true;
+            first_NameLabel.Location = new System.Drawing.Point(35, 34);
+            first_NameLabel.Name = "first_NameLabel";
+            first_NameLabel.Size = new System.Drawing.Size(60, 13);
+            first_NameLabel.TabIndex = 2;
+            first_NameLabel.Text = "First Name:";
+            // 
+            // last_NameLabel
+            // 
+            last_NameLabel.AutoSize = true;
+            last_NameLabel.Location = new System.Drawing.Point(231, 33);
+            last_NameLabel.Name = "last_NameLabel";
+            last_NameLabel.Size = new System.Drawing.Size(61, 13);
+            last_NameLabel.TabIndex = 4;
+            last_NameLabel.Text = "Last Name:";
+            // 
+            // grade_1Label
+            // 
+            grade_1Label.AutoSize = true;
+            grade_1Label.Location = new System.Drawing.Point(423, 34);
+            grade_1Label.Name = "grade_1Label";
+            grade_1Label.Size = new System.Drawing.Size(48, 13);
+            grade_1Label.TabIndex = 6;
+            grade_1Label.Text = "Grade 1:";
+            // 
+            // grade_2Label
+            // 
+            grade_2Label.AutoSize = true;
+            grade_2Label.Location = new System.Drawing.Point(604, 34);
+            grade_2Label.Name = "grade_2Label";
+            grade_2Label.Size = new System.Drawing.Size(48, 13);
+            grade_2Label.TabIndex = 8;
+            grade_2Label.Text = "Grade 2:";
+            // 
+            // grade_3Label
+            // 
+            grade_3Label.AutoSize = true;
+            grade_3Label.Location = new System.Drawing.Point(786, 34);
+            grade_3Label.Name = "grade_3Label";
+            grade_3Label.Size = new System.Drawing.Size(48, 13);
+            grade_3Label.TabIndex = 10;
+            grade_3Label.Text = "Grade 3:";
             // 
             // gradebookDataSet
             // 
@@ -98,7 +145,7 @@
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
             this.infoDataGridView.DataSource = this.infoBindingSource;
-            this.infoDataGridView.Location = new System.Drawing.Point(25, 153);
+            this.infoDataGridView.Location = new System.Drawing.Point(63, 151);
             this.infoDataGridView.Name = "infoDataGridView";
             this.infoDataGridView.Size = new System.Drawing.Size(843, 337);
             this.infoDataGridView.TabIndex = 1;
@@ -154,22 +201,13 @@
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(396, 113);
+            this.btnSubmit.Location = new System.Drawing.Point(342, 113);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnSubmit.TabIndex = 2;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
-            // 
-            // first_NameLabel
-            // 
-            first_NameLabel.AutoSize = true;
-            first_NameLabel.Location = new System.Drawing.Point(35, 34);
-            first_NameLabel.Name = "first_NameLabel";
-            first_NameLabel.Size = new System.Drawing.Size(60, 13);
-            first_NameLabel.TabIndex = 2;
-            first_NameLabel.Text = "First Name:";
             // 
             // txtFname
             // 
@@ -179,15 +217,6 @@
             this.txtFname.Size = new System.Drawing.Size(100, 20);
             this.txtFname.TabIndex = 3;
             // 
-            // last_NameLabel
-            // 
-            last_NameLabel.AutoSize = true;
-            last_NameLabel.Location = new System.Drawing.Point(231, 33);
-            last_NameLabel.Name = "last_NameLabel";
-            last_NameLabel.Size = new System.Drawing.Size(61, 13);
-            last_NameLabel.TabIndex = 4;
-            last_NameLabel.Text = "Last Name:";
-            // 
             // txtLname
             // 
             this.txtLname.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.infoBindingSource, "Last_Name", true));
@@ -195,15 +224,6 @@
             this.txtLname.Name = "txtLname";
             this.txtLname.Size = new System.Drawing.Size(100, 20);
             this.txtLname.TabIndex = 5;
-            // 
-            // grade_1Label
-            // 
-            grade_1Label.AutoSize = true;
-            grade_1Label.Location = new System.Drawing.Point(423, 34);
-            grade_1Label.Name = "grade_1Label";
-            grade_1Label.Size = new System.Drawing.Size(48, 13);
-            grade_1Label.TabIndex = 6;
-            grade_1Label.Text = "Grade 1:";
             // 
             // txtGrade1
             // 
@@ -213,15 +233,6 @@
             this.txtGrade1.Size = new System.Drawing.Size(100, 20);
             this.txtGrade1.TabIndex = 7;
             // 
-            // grade_2Label
-            // 
-            grade_2Label.AutoSize = true;
-            grade_2Label.Location = new System.Drawing.Point(604, 34);
-            grade_2Label.Name = "grade_2Label";
-            grade_2Label.Size = new System.Drawing.Size(48, 13);
-            grade_2Label.TabIndex = 8;
-            grade_2Label.Text = "Grade 2:";
-            // 
             // txtGrade2
             // 
             this.txtGrade2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.infoBindingSource, "Grade_2", true));
@@ -229,15 +240,6 @@
             this.txtGrade2.Name = "txtGrade2";
             this.txtGrade2.Size = new System.Drawing.Size(100, 20);
             this.txtGrade2.TabIndex = 9;
-            // 
-            // grade_3Label
-            // 
-            grade_3Label.AutoSize = true;
-            grade_3Label.Location = new System.Drawing.Point(786, 34);
-            grade_3Label.Name = "grade_3Label";
-            grade_3Label.Size = new System.Drawing.Size(48, 13);
-            grade_3Label.TabIndex = 10;
-            grade_3Label.Text = "Grade 3:";
             // 
             // txtGrade3
             // 
@@ -247,11 +249,33 @@
             this.txtGrade3.Size = new System.Drawing.Size(100, 20);
             this.txtGrade3.TabIndex = 11;
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(436, 113);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 12;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(529, 113);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 13;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 510);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(grade_3Label);
             this.Controls.Add(this.txtGrade3);
             this.Controls.Add(grade_2Label);
@@ -296,6 +320,8 @@
         private System.Windows.Forms.TextBox txtGrade1;
         private System.Windows.Forms.TextBox txtGrade2;
         private System.Windows.Forms.TextBox txtGrade3;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 
