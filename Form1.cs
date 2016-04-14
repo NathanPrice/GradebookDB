@@ -152,6 +152,16 @@ namespace GradebookDB
             sda.DeleteCommand.ExecuteNonQuery();
             con.Close();
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            // Hides the main form
+            this.Hide();
+
+            // Shows 2nd form
+            frmSearch sf = new frmSearch();
+            sf.ShowDialog();
+        }
     }
 
 }

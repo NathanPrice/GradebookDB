@@ -56,6 +56,7 @@
             this.txtGrade3 = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             first_NameLabel = new System.Windows.Forms.Label();
             last_NameLabel = new System.Windows.Forms.Label();
             grade_1Label = new System.Windows.Forms.Label();
@@ -148,7 +149,7 @@
             this.infoDataGridView.DataSource = this.infoBindingSource;
             this.infoDataGridView.Location = new System.Drawing.Point(63, 151);
             this.infoDataGridView.Name = "infoDataGridView";
-            this.infoDataGridView.Size = new System.Drawing.Size(843, 337);
+            this.infoDataGridView.Size = new System.Drawing.Size(863, 337);
             this.infoDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -270,11 +271,22 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(619, 113);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 14;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 510);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(grade_3Label);
@@ -324,6 +336,7 @@
         private System.Windows.Forms.TextBox txtGrade3;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
 
