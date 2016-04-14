@@ -34,6 +34,7 @@
             System.Windows.Forms.Label grade_1Label;
             System.Windows.Forms.Label grade_2Label;
             System.Windows.Forms.Label grade_3Label;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.gradebookDataSet = new GradebookDB.GradebookDataSet();
             this.infoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.infoTableAdapter = new GradebookDB.GradebookDataSetTableAdapters.InfoTableAdapter();
@@ -288,6 +289,7 @@
             this.Controls.Add(this.txtFname);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.infoDataGridView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
             this.Text = "Gradebook";
             this.Load += new System.EventHandler(this.frmMain_Load);

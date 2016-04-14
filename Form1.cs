@@ -24,7 +24,6 @@ namespace GradebookDB
         SqlDataAdapter sda = new SqlDataAdapter();
 
         DataSet ds = new DataSet();
-
         Grades calc = new Grades();
 
         public frmMain()
@@ -49,9 +48,6 @@ namespace GradebookDB
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
-            DataTable dt;
-
             try
             {
                 int average = calc.getAverage(Convert.ToInt32(txtGrade1.Text), Convert.ToInt32(txtGrade2.Text), Convert.ToInt32(txtGrade3.Text));
