@@ -122,7 +122,7 @@ namespace GradebookDB
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult dr;
-            dr = MessageBox.Show("Are you sure?\n There is no undo option once data is deleted", "Confirum Deletion",MessageBoxButtons.YesNo);
+            dr = MessageBox.Show("Are you sure?\n There is no undo option once data is deleted", "Confirm Deletion",MessageBoxButtons.YesNo);
 
             if (dr == DialogResult.Yes)
             {
