@@ -29,6 +29,8 @@ namespace GradebookDB
         public frmMain()
         {
             InitializeComponent();
+            fillCombo();
+            filterCombo();
         }
 
         private void infoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -153,14 +155,62 @@ namespace GradebookDB
             con.Close();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        void fillCombo()
         {
-            // Hides the main form
-            this.Hide();
+            string constring = ("Data Source=PC16\\SQLEXPRESS;Initial Catalog=Gradebook;Integrated Security=True");
+            string query = "SELECT * FROM Info";
+            SqlConnection con = new SqlConnection(constring);
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataReader reader;
 
-            // Shows 2nd form
-            frmSearch sf = new frmSearch();
-            sf.ShowDialog();
+            try
+            {
+                con.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string fName = reader.GetString(1);
+                    cmbSearch.Items.Add(fName);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex));
+            }
+        }
+
+        void filterCombo()
+        {
+            cmbSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbSearch.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+
+            string constring = ("Data Source=PC16\\SQLEXPRESS;Initial Catalog=Gradebook;Integrated Security=True");
+            string query = "SELECT * FROM Info";
+            SqlConnection con = new SqlConnection(constring);
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataReader reader;
+
+            try
+            {
+                con.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string fName = reader.GetString(1);
+                    collection.Add(fName);
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex));
+            }
+            cmbSearch.AutoCompleteCustomSource = collection;
+
         }
     }
 

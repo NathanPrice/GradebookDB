@@ -56,7 +56,8 @@
             this.txtGrade3 = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.cmbSearch = new System.Windows.Forms.ComboBox();
+            this.lblSearch = new System.Windows.Forms.Label();
             first_NameLabel = new System.Windows.Forms.Label();
             last_NameLabel = new System.Windows.Forms.Label();
             grade_1Label = new System.Windows.Forms.Label();
@@ -271,22 +272,30 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnSearch
+            // cmbSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(619, 113);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 14;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.cmbSearch.FormattingEnabled = true;
+            this.cmbSearch.Location = new System.Drawing.Point(101, 95);
+            this.cmbSearch.Name = "cmbSearch";
+            this.cmbSearch.Size = new System.Drawing.Size(121, 21);
+            this.cmbSearch.TabIndex = 15;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Location = new System.Drawing.Point(50, 98);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(44, 13);
+            this.lblSearch.TabIndex = 16;
+            this.lblSearch.Text = "Search:";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 510);
-            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.lblSearch);
+            this.Controls.Add(this.cmbSearch);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(grade_3Label);
@@ -336,7 +345,8 @@
         private System.Windows.Forms.TextBox txtGrade3;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ComboBox cmbSearch;
+        private System.Windows.Forms.Label lblSearch;
     }
 }
 
