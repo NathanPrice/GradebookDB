@@ -71,7 +71,8 @@ namespace GradebookDB
 
                 refreshData();
                 clearTextBoxes();
-
+                cmbSearch.Items.Clear();
+                fillCombo();
             }
             catch (Exception ex)
             {
@@ -114,6 +115,8 @@ namespace GradebookDB
                 con.Open();
                 da.UpdateCommand.ExecuteNonQuery();
                 refreshData();
+                cmbSearch.Items.Clear();
+                fillCombo();
                 con.Close();
             }
             catch (Exception ex)
@@ -131,6 +134,9 @@ namespace GradebookDB
             if (dr == DialogResult.Yes)
             {
                 deleteData();
+                refreshData();
+                cmbSearch.Items.Clear();
+                fillCombo();
             }
             else
             {
