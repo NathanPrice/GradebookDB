@@ -43,6 +43,8 @@ namespace GradebookDB
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'gradebookDS.Info' table. You can move, or remove it, as needed.
+            this.infoTableAdapter1.Fill(this.gradebookDS.Info);
             // TODO: This line of code loads data into the 'gradebookDataSet.Info' table. You can move, or remove it, as needed.
             this.infoTableAdapter.Fill(this.gradebookDataSet.Info);
             clearTextBoxes();
@@ -68,7 +70,6 @@ namespace GradebookDB
                 con.Close();
 
                 refreshData();
-
                 clearTextBoxes();
 
             }
@@ -101,13 +102,13 @@ namespace GradebookDB
                 SqlDataAdapter da = new SqlDataAdapter();
 
                 da.UpdateCommand = new SqlCommand("UPDATE Info SET First_Name = @First_Name, Last_Name = @Last_Name, Grade_1 = @Grade_1, Grade_2 = @Grade_2, Grade_3 = @Grade_3, Average = @Average, Letter_Grade = @Letter_Grade WHERE Id = @Id", con);
-                da.UpdateCommand.Parameters.Add("@First_Name", SqlDbType.Text).Value = txtFname.Text;
-                da.UpdateCommand.Parameters.Add("@Last_Name", SqlDbType.Text).Value = txtLname.Text;
+                da.UpdateCommand.Parameters.Add("@First_Name", SqlDbType.VarChar).Value = txtFname.Text;
+                da.UpdateCommand.Parameters.Add("@Last_Name", SqlDbType.VarChar).Value = txtLname.Text;
                 da.UpdateCommand.Parameters.Add("@Grade_1", SqlDbType.Int).Value = Convert.ToInt32(txtGrade1.Text);
                 da.UpdateCommand.Parameters.Add("@Grade_2", SqlDbType.Int).Value = Convert.ToInt32(txtGrade2.Text);
                 da.UpdateCommand.Parameters.Add("@Grade_3", SqlDbType.Int).Value = Convert.ToInt32(txtGrade3.Text);
                 da.UpdateCommand.Parameters.Add("@Average", SqlDbType.Int).Value = average;
-                da.UpdateCommand.Parameters.Add("@Letter_Grade", SqlDbType.Text).Value = letterGrade;
+                da.UpdateCommand.Parameters.Add("@Letter_Grade", SqlDbType.VarChar).Value = letterGrade;
                 da.UpdateCommand.Parameters.Add("@Id", SqlDbType.Int).Value = gradebookDataSet.Tables[0].Rows[infoBindingSource.Position][0];
 
                 con.Open();
@@ -211,6 +212,42 @@ namespace GradebookDB
             }
             cmbSearch.AutoCompleteCustomSource = collection;
 
+        }
+
+        private void cmbSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string constring = ("Data Source=PC16\\SQLEXPRESS;Initial Catalog=Gradebook;Integrated Security=True");
+            string query = "SELECT * FROM Info WHERE First_Name='"+ cmbSearch.Text +"'";
+            SqlConnection con = new SqlConnection(constring);
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataReader reader;
+
+            try
+            {
+                con.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string fName = reader.GetString(1);
+                    string lName = reader.GetString(2);
+                    string Grade1 = reader.GetInt32(3).ToString();
+                    string Grade2 = reader.GetInt32(4).ToString();
+                    string Grade3 = reader.GetInt32(5).ToString();
+
+                    txtFname.Text = fName;
+                    txtLname.Text = lName;
+                    txtGrade1.Text = Grade1;
+                    txtGrade2.Text = Grade2;
+                    txtGrade3.Text = Grade3;
+
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex));
+            }
         }
     }
 

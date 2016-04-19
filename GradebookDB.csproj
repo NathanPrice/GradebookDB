@@ -60,6 +60,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GradebookDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GradebookDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GradebookDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Grades.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +90,17 @@
     </None>
     <None Include="GradebookDataSet.xss">
       <DependentUpon>GradebookDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GradebookDS.xsc">
+      <DependentUpon>GradebookDS.xsd</DependentUpon>
+    </None>
+    <None Include="GradebookDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GradebookDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GradebookDS.xss">
+      <DependentUpon>GradebookDS.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -39,15 +39,6 @@
             this.infoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.infoTableAdapter = new GradebookDB.GradebookDataSetTableAdapters.InfoTableAdapter();
             this.tableAdapterManager = new GradebookDB.GradebookDataSetTableAdapters.TableAdapterManager();
-            this.infoDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.txtFname = new System.Windows.Forms.TextBox();
             this.txtLname = new System.Windows.Forms.TextBox();
@@ -58,6 +49,19 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.cmbSearch = new System.Windows.Forms.ComboBox();
             this.lblSearch = new System.Windows.Forms.Label();
+            this.gradebookDS = new GradebookDB.GradebookDS();
+            this.infoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.infoTableAdapter1 = new GradebookDB.GradebookDSTableAdapters.InfoTableAdapter();
+            this.tableAdapterManager1 = new GradebookDB.GradebookDSTableAdapters.TableAdapterManager();
+            this.infoDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             first_NameLabel = new System.Windows.Forms.Label();
             last_NameLabel = new System.Windows.Forms.Label();
             grade_1Label = new System.Windows.Forms.Label();
@@ -65,6 +69,8 @@
             grade_3Label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gradebookDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gradebookDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,74 +139,6 @@
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.InfoTableAdapter = this.infoTableAdapter;
             this.tableAdapterManager.UpdateOrder = GradebookDB.GradebookDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // infoDataGridView
-            // 
-            this.infoDataGridView.AutoGenerateColumns = false;
-            this.infoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.infoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8});
-            this.infoDataGridView.DataSource = this.infoBindingSource;
-            this.infoDataGridView.Location = new System.Drawing.Point(63, 151);
-            this.infoDataGridView.Name = "infoDataGridView";
-            this.infoDataGridView.Size = new System.Drawing.Size(863, 337);
-            this.infoDataGridView.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "First_Name";
-            this.dataGridViewTextBoxColumn2.HeaderText = "First_Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Last_Name";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Last_Name";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Grade_1";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Grade_1";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Grade_2";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Grade_2";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Grade_3";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Grade_3";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Average";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Average";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Letter_Grade";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Letter_Grade";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
             // btnSubmit
             // 
@@ -279,6 +217,7 @@
             this.cmbSearch.Name = "cmbSearch";
             this.cmbSearch.Size = new System.Drawing.Size(121, 21);
             this.cmbSearch.TabIndex = 15;
+            this.cmbSearch.SelectedIndexChanged += new System.EventHandler(this.cmbSearch_SelectedIndexChanged);
             // 
             // lblSearch
             // 
@@ -289,11 +228,99 @@
             this.lblSearch.TabIndex = 16;
             this.lblSearch.Text = "Search:";
             // 
+            // gradebookDS
+            // 
+            this.gradebookDS.DataSetName = "GradebookDS";
+            this.gradebookDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // infoBindingSource1
+            // 
+            this.infoBindingSource1.DataMember = "Info";
+            this.infoBindingSource1.DataSource = this.gradebookDS;
+            // 
+            // infoTableAdapter1
+            // 
+            this.infoTableAdapter1.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager1
+            // 
+            this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager1.InfoTableAdapter = this.infoTableAdapter1;
+            this.tableAdapterManager1.UpdateOrder = GradebookDB.GradebookDSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // infoDataGridView
+            // 
+            this.infoDataGridView.AutoGenerateColumns = false;
+            this.infoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.infoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8});
+            this.infoDataGridView.DataSource = this.infoBindingSource1;
+            this.infoDataGridView.Location = new System.Drawing.Point(66, 164);
+            this.infoDataGridView.Name = "infoDataGridView";
+            this.infoDataGridView.Size = new System.Drawing.Size(845, 336);
+            this.infoDataGridView.TabIndex = 16;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "First_Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "First_Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Last_Name";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Last_Name";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Grade_1";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Grade_1";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Grade_2";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Grade_2";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Grade_3";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Grade_3";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Average";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Average";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "Letter_Grade";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Letter_Grade";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 510);
+            this.ClientSize = new System.Drawing.Size(965, 533);
+            this.Controls.Add(this.infoDataGridView);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.cmbSearch);
             this.Controls.Add(this.btnDelete);
@@ -309,13 +336,14 @@
             this.Controls.Add(first_NameLabel);
             this.Controls.Add(this.txtFname);
             this.Controls.Add(this.btnSubmit);
-            this.Controls.Add(this.infoDataGridView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
             this.Text = "Gradebook";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gradebookDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gradebookDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infoBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -328,15 +356,6 @@
         private System.Windows.Forms.BindingSource infoBindingSource;
         private GradebookDataSetTableAdapters.InfoTableAdapter infoTableAdapter;
         private GradebookDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView infoDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.TextBox txtFname;
         private System.Windows.Forms.TextBox txtLname;
@@ -347,6 +366,19 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ComboBox cmbSearch;
         private System.Windows.Forms.Label lblSearch;
+        private GradebookDS gradebookDS;
+        private System.Windows.Forms.BindingSource infoBindingSource1;
+        private GradebookDSTableAdapters.InfoTableAdapter infoTableAdapter1;
+        private GradebookDSTableAdapters.TableAdapterManager tableAdapterManager1;
+        private System.Windows.Forms.DataGridView infoDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
     }
 }
 
