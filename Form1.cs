@@ -113,6 +113,7 @@ namespace GradebookDB
 
                 con.Open();
                 da.UpdateCommand.ExecuteNonQuery();
+                refreshData();
                 con.Close();
             }
             catch (Exception ex)
