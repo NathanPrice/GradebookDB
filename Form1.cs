@@ -26,6 +26,7 @@ namespace GradebookDB
         DataSet ds = new DataSet();
         Grades calc = new Grades();
 
+        // Variable for getting the ID from combobox based on selected First Name
         string id;
 
         public frmMain()
@@ -52,6 +53,7 @@ namespace GradebookDB
             clearTextBoxes();
         }
 
+        // Stores Textbox Values in the DataGridView
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             try
@@ -83,20 +85,7 @@ namespace GradebookDB
             }
         }
 
-        private void clearTextBoxes()
-        {
-            txtFname.Text = "";
-            txtLname.Text = "";
-            txtGrade1.Text = "";
-            txtGrade2.Text = "";
-            txtGrade3.Text = "";
-        }
-
-        private void infoBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-            
-        }
-
+        // Updates DataGridView & SQL Values
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -129,10 +118,11 @@ namespace GradebookDB
 
         }
 
+        // Deletes Data from DataGridView & SQL
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult dr;
-            dr = MessageBox.Show("Are you sure?\n There is no undo option once data is deleted", "Confirm Deletion",MessageBoxButtons.YesNo);
+            dr = MessageBox.Show("Are you sure?\n There is no undo option once data is deleted", "Confirm Deletion", MessageBoxButtons.YesNo);
 
             if (dr == DialogResult.Yes)
             {
@@ -146,6 +136,15 @@ namespace GradebookDB
             {
                 MessageBox.Show("Deletion Canceled");
             }
+        }
+
+        private void clearTextBoxes()
+        {
+            txtFname.Text = "";
+            txtLname.Text = "";
+            txtGrade1.Text = "";
+            txtGrade2.Text = "";
+            txtGrade3.Text = "";
         }
 
         public void refreshData()
@@ -237,10 +236,11 @@ namespace GradebookDB
 
         }
 
+        // Gets Value Based on Selected Combobox Item
         private void cmbSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
             string constring = ("Data Source=PC16\\SQLEXPRESS;Initial Catalog=Gradebook;Integrated Security=True");
-            string query = "SELECT * FROM Info WHERE First_Name='"+ cmbSearch.Text +"'";
+            string query = "SELECT * FROM Info WHERE First_Name='" + cmbSearch.Text + "'";
             SqlConnection con = new SqlConnection(constring);
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataReader reader;
@@ -258,7 +258,7 @@ namespace GradebookDB
                     string Grade1 = reader.GetInt32(3).ToString();
                     string Grade2 = reader.GetInt32(4).ToString();
                     string Grade3 = reader.GetInt32(5).ToString();
-                    
+
                     txtFname.Text = fName;
                     txtLname.Text = lName;
                     txtGrade1.Text = Grade1;
@@ -271,6 +271,11 @@ namespace GradebookDB
             {
                 MessageBox.Show(Convert.ToString(ex));
             }
+        }
+
+        private void infoBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 
