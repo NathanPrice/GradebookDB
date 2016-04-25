@@ -26,6 +26,8 @@ namespace GradebookDB
         DataSet ds = new DataSet();
         Grades calc = new Grades();
 
+        string id;
+
         public frmMain()
         {
             InitializeComponent();
@@ -73,6 +75,7 @@ namespace GradebookDB
                 clearTextBoxes();
                 cmbSearch.Items.Clear();
                 fillCombo();
+                filterCombo();
             }
             catch (Exception ex)
             {
@@ -110,7 +113,7 @@ namespace GradebookDB
                 da.UpdateCommand.Parameters.Add("@Grade_3", SqlDbType.Int).Value = Convert.ToInt32(txtGrade3.Text);
                 da.UpdateCommand.Parameters.Add("@Average", SqlDbType.Int).Value = average;
                 da.UpdateCommand.Parameters.Add("@Letter_Grade", SqlDbType.VarChar).Value = letterGrade;
-                da.UpdateCommand.Parameters.Add("@Id", SqlDbType.Int).Value = gradebookDataSet.Tables[0].Rows[infoBindingSource.Position][0];
+                da.UpdateCommand.Parameters.Add("@Id", SqlDbType.Int).Value = id;
 
                 con.Open();
                 da.UpdateCommand.ExecuteNonQuery();
@@ -137,6 +140,7 @@ namespace GradebookDB
                 refreshData();
                 cmbSearch.Items.Clear();
                 fillCombo();
+                filterCombo();
             }
             else
             {
@@ -155,12 +159,24 @@ namespace GradebookDB
 
         public void deleteData()
         {
-            sda.DeleteCommand = new SqlCommand("DELETE FROM Info WHERE Id = @Id", con);
-            sda.DeleteCommand.Parameters.Add("@Id", SqlDbType.Int).Value = gradebookDataSet.Tables[0].Rows[infoBindingSource.Position][0];
+            try
+            {
+                sda.DeleteCommand = new SqlCommand("DELETE FROM Info WHERE First_Name = @First_Name AND Last_Name = @Last_Name AND Grade_1 = @Grade_1 AND Grade_2 = @Grade_2 AND @Grade_3 = Grade_3", con);
+                sda.DeleteCommand.Parameters.Add("@First_Name", SqlDbType.VarChar).Value = txtFname.Text;
+                sda.DeleteCommand.Parameters.Add("@Last_Name", SqlDbType.VarChar).Value = txtLname.Text;
+                sda.DeleteCommand.Parameters.Add("@Grade_1", SqlDbType.Int).Value = Convert.ToInt32(txtGrade1.Text);
+                sda.DeleteCommand.Parameters.Add("@Grade_2", SqlDbType.Int).Value = Convert.ToInt32(txtGrade2.Text);
+                sda.DeleteCommand.Parameters.Add("@Grade_3", SqlDbType.Int).Value = Convert.ToInt32(txtGrade3.Text);
 
-            con.Open();
-            sda.DeleteCommand.ExecuteNonQuery();
-            con.Close();
+                con.Open();
+                sda.DeleteCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex));
+            }
+
         }
 
         void fillCombo()
@@ -236,18 +252,18 @@ namespace GradebookDB
 
                 while (reader.Read())
                 {
+                    id = reader.GetInt32(0).ToString();
                     string fName = reader.GetString(1);
                     string lName = reader.GetString(2);
                     string Grade1 = reader.GetInt32(3).ToString();
                     string Grade2 = reader.GetInt32(4).ToString();
                     string Grade3 = reader.GetInt32(5).ToString();
-
+                    
                     txtFname.Text = fName;
                     txtLname.Text = lName;
                     txtGrade1.Text = Grade1;
                     txtGrade2.Text = Grade2;
                     txtGrade3.Text = Grade3;
-
                 }
                 con.Close();
             }
