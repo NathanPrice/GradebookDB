@@ -151,20 +151,10 @@ namespace GradebookDB
         {
             try
             {
-                /*
-                sda.DeleteCommand = new SqlCommand("DELETE FROM Info WHERE First_Name = @First_Name AND Last_Name = @Last_Name AND Grade_1 = @Grade_1 AND Grade_2 = @Grade_2 AND @Grade_3 = Grade_3", con);
-                sda.DeleteCommand.Parameters.Add("@First_Name", SqlDbType.VarChar).Value = txtFname.Text;
-                sda.DeleteCommand.Parameters.Add("@Last_Name", SqlDbType.VarChar).Value = txtLname.Text;
-                sda.DeleteCommand.Parameters.Add("@Grade_1", SqlDbType.Int).Value = Convert.ToInt32(txtGrade1.Text);
-                sda.DeleteCommand.Parameters.Add("@Grade_2", SqlDbType.Int).Value = Convert.ToInt32(txtGrade2.Text);
-                sda.DeleteCommand.Parameters.Add("@Grade_3", SqlDbType.Int).Value = Convert.ToInt32(txtGrade3.Text);
-                */
-
                 cmd = new SqlCommand("deleteData", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ID", id);
                 con.Open();
-                // sda.DeleteCommand.ExecuteNonQuery();
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
