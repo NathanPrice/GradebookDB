@@ -1,33 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Data.Sql;
+using System.Windows.Forms;
 
 namespace GradebookDB
 {
     public partial class frmMain : Form
     {
         // String to connect to your Database
-        SqlConnection con = new SqlConnection("Data Source=PC16\\SQLEXPRESS;Initial Catalog=Gradebook;Integrated Security=True");
+        private SqlConnection con = new SqlConnection("Data Source=PC16\\SQLEXPRESS;Initial Catalog=Gradebook;Integrated Security=True");
 
         // Variable to send SQL Commands
-        SqlCommand cmd;
+        private SqlCommand cmd;
 
         // Represents a set of data commands and a database connection that are used to fill the DataSet and update a SQL Server database
-        SqlDataAdapter sda = new SqlDataAdapter();
+        private SqlDataAdapter sda = new SqlDataAdapter();
 
-        DataSet ds = new DataSet();
-        Grades calc = new Grades();
+        private Grades calc = new Grades();
 
         // Variable for getting the ID from combobox based on selected First Name
-        string id;
+        private string id;
 
         public frmMain()
         {
@@ -41,15 +33,12 @@ namespace GradebookDB
             this.Validate();
             this.infoBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.gradebookDataSet);
-
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'gradebookDS.Info' table. You can move, or remove it, as needed.
             this.infoTableAdapter1.Fill(this.gradebookDS.Info);
-            // TODO: This line of code loads data into the 'gradebookDataSet.Info' table. You can move, or remove it, as needed.
-            this.infoTableAdapter.Fill(this.gradebookDataSet.Info);
             clearTextBoxes();
         }
 
@@ -62,7 +51,9 @@ namespace GradebookDB
                 char letterGrade = calc.getLetterGrade(average);
 
                 con.Open();
-                cmd = new SqlCommand(@"INSERT INTO Info (First_Name, Last_Name, Grade_1, Grade_2, Grade_3, Average, Letter_Grade) VALUES (@First_Name, @Last_Name, @Grade_1, @Grade_2, @Grade_3, @Average, @Letter_Grade)", con);
+                // Uses the Stored Procedure insertData to Put the Values in the Database
+                cmd = new SqlCommand("insertData", con);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@First_Name", txtFname.Text);
                 cmd.Parameters.AddWithValue("@Last_Name", txtLname.Text);
                 cmd.Parameters.AddWithValue("@Grade_1", Convert.ToInt32(txtGrade1.Text));
@@ -92,20 +83,21 @@ namespace GradebookDB
             {
                 int average = calc.getAverage(Convert.ToInt32(txtGrade1.Text), Convert.ToInt32(txtGrade2.Text), Convert.ToInt32(txtGrade3.Text));
                 char letterGrade = calc.getLetterGrade(average);
-                SqlDataAdapter da = new SqlDataAdapter();
 
-                da.UpdateCommand = new SqlCommand("UPDATE Info SET First_Name = @First_Name, Last_Name = @Last_Name, Grade_1 = @Grade_1, Grade_2 = @Grade_2, Grade_3 = @Grade_3, Average = @Average, Letter_Grade = @Letter_Grade WHERE Id = @Id", con);
-                da.UpdateCommand.Parameters.Add("@First_Name", SqlDbType.VarChar).Value = txtFname.Text;
-                da.UpdateCommand.Parameters.Add("@Last_Name", SqlDbType.VarChar).Value = txtLname.Text;
-                da.UpdateCommand.Parameters.Add("@Grade_1", SqlDbType.Int).Value = Convert.ToInt32(txtGrade1.Text);
-                da.UpdateCommand.Parameters.Add("@Grade_2", SqlDbType.Int).Value = Convert.ToInt32(txtGrade2.Text);
-                da.UpdateCommand.Parameters.Add("@Grade_3", SqlDbType.Int).Value = Convert.ToInt32(txtGrade3.Text);
-                da.UpdateCommand.Parameters.Add("@Average", SqlDbType.Int).Value = average;
-                da.UpdateCommand.Parameters.Add("@Letter_Grade", SqlDbType.VarChar).Value = letterGrade;
-                da.UpdateCommand.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                // Uses the Stored Procedure updateData to Update the Values in my SQL Database
+                cmd = new SqlCommand("updateData", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@First_Name", txtFname.Text);
+                cmd.Parameters.AddWithValue("@Last_Name", txtLname.Text);
+                cmd.Parameters.AddWithValue("@Grade_1", Convert.ToInt32(txtGrade1.Text));
+                cmd.Parameters.AddWithValue("@Grade_2", Convert.ToInt32(txtGrade2.Text));
+                cmd.Parameters.AddWithValue("@Grade_3", Convert.ToInt32(txtGrade3.Text));
+                cmd.Parameters.AddWithValue("@Average", average);
+                cmd.Parameters.AddWithValue("@Letter_Grade", letterGrade);
+                cmd.Parameters.AddWithValue("@ID", id);
 
                 con.Open();
-                da.UpdateCommand.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 refreshData();
                 cmbSearch.Items.Clear();
                 fillCombo();
@@ -115,7 +107,6 @@ namespace GradebookDB
             {
                 MessageBox.Show(Convert.ToString(ex));
             }
-
         }
 
         // Deletes Data from DataGridView & SQL
@@ -150,7 +141,7 @@ namespace GradebookDB
         public void refreshData()
         {
             DataTable dt = new DataTable();
-            sda = new SqlDataAdapter("SELECT * FROM Info", con);
+            sda = new SqlDataAdapter("EXEC getData", con);
             infoDataGridView.DataSource = dt;
             sda.Fill(dt);
             infoDataGridView.Update();
@@ -160,25 +151,30 @@ namespace GradebookDB
         {
             try
             {
+                /*
                 sda.DeleteCommand = new SqlCommand("DELETE FROM Info WHERE First_Name = @First_Name AND Last_Name = @Last_Name AND Grade_1 = @Grade_1 AND Grade_2 = @Grade_2 AND @Grade_3 = Grade_3", con);
                 sda.DeleteCommand.Parameters.Add("@First_Name", SqlDbType.VarChar).Value = txtFname.Text;
                 sda.DeleteCommand.Parameters.Add("@Last_Name", SqlDbType.VarChar).Value = txtLname.Text;
                 sda.DeleteCommand.Parameters.Add("@Grade_1", SqlDbType.Int).Value = Convert.ToInt32(txtGrade1.Text);
                 sda.DeleteCommand.Parameters.Add("@Grade_2", SqlDbType.Int).Value = Convert.ToInt32(txtGrade2.Text);
                 sda.DeleteCommand.Parameters.Add("@Grade_3", SqlDbType.Int).Value = Convert.ToInt32(txtGrade3.Text);
+                */
 
+                cmd = new SqlCommand("deleteData", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ID", id);
                 con.Open();
-                sda.DeleteCommand.ExecuteNonQuery();
+                // sda.DeleteCommand.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 con.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(Convert.ToString(ex));
             }
-
         }
 
-        void fillCombo()
+        private void fillCombo()
         {
             string constring = ("Data Source=PC16\\SQLEXPRESS;Initial Catalog=Gradebook;Integrated Security=True");
             string query = "SELECT * FROM Info";
@@ -204,7 +200,7 @@ namespace GradebookDB
             }
         }
 
-        void filterCombo()
+        private void filterCombo()
         {
             cmbSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbSearch.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -233,7 +229,6 @@ namespace GradebookDB
                 MessageBox.Show(Convert.ToString(ex));
             }
             cmbSearch.AutoCompleteCustomSource = collection;
-
         }
 
         // Gets Value Based on Selected Combobox Item
@@ -275,8 +270,6 @@ namespace GradebookDB
 
         private void infoBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            
         }
     }
-
 }
